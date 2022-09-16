@@ -1,4 +1,4 @@
-# 基于 VirtualBox 的网络攻防基础环境搭建
+# 实验一 基于 VirtualBox 的网络攻防基础环境搭建
 
 ## 实验目的
 
@@ -10,7 +10,7 @@
 
 * VirtualBox 虚拟机
 * 攻击者主机（Attacker）：Kali Linux 2022.3
-* 网关（Gateway, GW）：Debian Buster
+* 网关（Gateway/GW）：Debian Buster
 * 靶机（Victim）： xp-sp3 / Kali /Debain
 
 ## 实验要求
@@ -95,7 +95,14 @@
     * 网络层（victim1-xp 访问 attacker kali）
     * ![](./img/victim-attacker.png)
     * 应用层（victim1-kali 访问 attacker kali）
-    * ![](./img/victim-attacker2.png)
+        * ```shell
+            # attacker kali 开启 apache2 服务
+            sudo systemctl start apache2.service
+
+            # victim-kali 访问网站
+            curl 10.0.2.4
+            ```
+        * ![](./img/victim-attacker2.png)
 * 攻击者主机无法直接访问靶机
     * 网络层 （attacker kali 访问 victim2-xp）
     * ![](./img/attacker-victim.png)
@@ -122,7 +129,7 @@
         ```
 * 在网卡三：172.16.111/24 使用虚拟机 victim1-kali （172.16.111.120）访问网络
 * ```shell
-  scp worry@192.168.56.113:/home/worry/workspace/20220906.kali /home/LALAlostu/Desktop
+  scp worry@192.168.56.113:/home/worry/workspace/20220906.kali /home/username/Desktop
   ```
 * 使用宿主机 wireshark 查看上下行流量
 * ![](./img/kali-pcap.png)
